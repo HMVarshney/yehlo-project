@@ -82,6 +82,10 @@ class App extends Component {
     };
 
     handleUpload = ()=>{
+        if(!this.state.image){
+            this.setState({isOpen: true, message: 'Please Upload an Image'});
+            return;
+        }
         this.setState({uploading:true});
 
         const uploadTask = storage.ref('images/image_'+this.state.name).put(this.state.image);
@@ -111,7 +115,7 @@ class App extends Component {
                     <Toolbar>
                         <a style={{textDecoration:'none', color:'white'}} href='/'>YEHLO</a>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuClick}>
-                            <Typography variant='p' style={{color:'white', marginLeft:'50px'}}>OpenMenu</Typography>
+                            <Typography variant='p' style={{color:'white', marginLeft:'50px'}}>Menu</Typography>
                         </Button>
                         <Menu
                             id="simple-menu"
