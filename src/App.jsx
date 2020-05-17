@@ -19,6 +19,7 @@ class App extends Component {
         imageURL:'',
         message: '',
         anchorEl:null,
+        achorMenu:null,
         isOpen:false,
         dataSaved:false,
         pgToDisplay:{name:'Sample', address:'Sample'},
@@ -99,11 +100,11 @@ class App extends Component {
     }
 
     handleMenuClick=(event)=>{
-        this.setState({anchorEl:event.currentTarget})
+        this.setState({anchorMenu:event.currentTarget})
     }
 
     handleMenuClose=()=>{
-        this.setState({anchorEl:null})
+        this.setState({anchorMenu:null})
     }
 
     render() { 
@@ -119,9 +120,9 @@ class App extends Component {
                         </Button>
                         <Menu
                             id="simple-menu"
-                            anchorEl={this.state.anchorEl}
+                            anchorEl={this.state.anchorMenu}
                             keepMounted
-                            open={Boolean(this.state.anchorEl)}
+                            open={Boolean(this.state.anchorMenu)}
                             onClose={this.handleMenuClose}>
                             <MenuItem onClick={this.handleMenuClose}>
                                 <a style={{textDecoration:'none',}} href='/'>Form</a>                       
