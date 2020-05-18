@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Router, Route, Switch, Link} from 'react-router-dom';
-import {AppBar, InputBase, Toolbar, Button, Menu, MenuItem, Typography, Box, Grid} from '@material-ui/core'
+import {Router, Route, Switch} from 'react-router-dom';
+import {AppBar, InputBase, Toolbar, Button, Menu, MenuItem, Typography} from '@material-ui/core'
 import InputForm from './Components/inputForm';
 import PGInfo from './Components/pgPage'
 import Carousel from './Components/displayInfo';
@@ -10,8 +10,6 @@ import SearchTwoToneIcon from '@material-ui/icons/SearchTwoTone';
 import logo from './assets/images/yehloLogo1.jpg';
 
 const history = createBrowserHistory();
-
-var index=-1;
 
 class App extends Component {
     state = { 
@@ -117,7 +115,7 @@ class App extends Component {
             <React.Fragment>
                 <AppBar color='transparent'>
                     <Toolbar>
-                    <a href='/'><img src={logo} style={{width:'120px', position:'relative', left:'-25px', top:'2px', tranform:'rotate(20)'}} /></a>
+                    <a href='/'><img alt='BG' src={logo} style={{width:'120px', position:'relative', left:'-25px', top:'2px', tranform:'rotate(20)'}} /></a>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuClick}>
                             <Typography variant='h6' style={{color:'black', marginLeft:'50px'}}>Menu</Typography>
                         </Button>

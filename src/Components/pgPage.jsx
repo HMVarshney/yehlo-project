@@ -36,16 +36,16 @@ class pgInfo extends Component {
         if(this.state.loaded){
             return(
                 <div>
-            <img style={{position:'absolute', left:'0px', top:'0px', zIndex:-1, height:'200%', width:'100%', opacity:'0.6'}} src='https://cdn.hipwallpaper.com/i/3/88/sXHZgG.jpg' />
+            <img alt='BG' style={{position:'absolute', left:'0px', top:'0px', zIndex:-1, height:'200%', width:'100%', opacity:'0.6'}} src='https://cdn.hipwallpaper.com/i/3/88/sXHZgG.jpg' />
             <div style={{marginTop:'100px'}}>
             <Grid container spacing={4} alignItems='center' justify='center'>
                 <Paper>
                 <Grid item>
-                    <img style={{width:'800px'}} src={image} />
+                    <img alt='displayImage' style={{width:'800px'}} src={image} />
                 </Grid>
                 <Grid item>
                     <Card style={{padding:'10px'}}>
-                        <CardHeader title="Details of the PG" avatar={<Avatar aria-label='Name'>R</Avatar>}/>
+                        <CardHeader title="Details of the PG" titleTypographyProps={{variant:'h5'}} avatar={<Avatar>PG</Avatar>}/>
                         <CardContent>
                             <Typography>Name: {name}</Typography>
                             <Typography>Address: {address}</Typography>
@@ -56,10 +56,10 @@ class pgInfo extends Component {
             </Grid> 
 
             <br />
+            <br />                                                          
             <br />
+            <div><Typography style={{fontFamily:'Pangolin'}} align='center' variant='h3' color='primary'>Check out our other locations</Typography></div>
             <br />
-            <br />
-            <div><Typography style={{fontFamily:'Pangolin'}} align='center' variant='h3' color='primary' gutterBottom>Check out our other locations</Typography></div>
 
             <Grid container justify='center' alignItems='center'>
                 <Grid item>    
@@ -104,7 +104,7 @@ const LowerGridList = (props)=>{
                 style={{margin:'6px'}}
                 cols={2}
                 key={props.name}>
-                <img style={{width:'700px', height:'220px'}} src={imageURL} alt='image' />
+                <img style={{width:'700px', height:'240px'}} src={imageURL} alt='listImage' />
                 <GridListTileBar title={userName} 
                     actionIcon={<IconButton 
                     color='secondary'

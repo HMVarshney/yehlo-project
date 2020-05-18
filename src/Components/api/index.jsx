@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import firebase, {storage} from './firestore';
+import firebase from './firestore';
 
 const getData = async ()=>{
     const db = await firebase.firestore().collection("users").get();

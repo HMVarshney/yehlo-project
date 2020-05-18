@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Carousel} from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {Paper, Grid, Typography, IconButton} from '@material-ui/core';
+import {Paper, Grid, Typography} from '@material-ui/core';
 import {getData} from './api/index';
 import  {storage} from './api/firestore';
 import {Link} from 'react-router-dom';
-
-let styles = {
-    margin: 'auto',
-    width: '900px'
-  };
 
 class CarouselDisplay extends React.Component{
 
@@ -32,7 +27,7 @@ class CarouselDisplay extends React.Component{
         if(this.state.loaded){
         return (
             <div>            
-                <img style={{position:'absolute', left:'0px', top:'0px', backgroundSize:'cover', zIndex:-1, opacity:'0.6'}} src='https://cdn.hipwallpaper.com/i/3/88/sXHZgG.jpg' />
+                <img alt='BG' style={{position:'absolute', left:'0px', top:'0px', backgroundSize:'cover', zIndex:-1, opacity:'0.6'}} src='https://cdn.hipwallpaper.com/i/3/88/sXHZgG.jpg' />
                 <div style={{marginTop:'100px'}}>
                 <Typography variant='h4' style={{textAlign:'center', marginBottom:'40px', fontFamily:'Pangolin'}}>Do you see your favorite one?</Typography>
                 <Grid container>
