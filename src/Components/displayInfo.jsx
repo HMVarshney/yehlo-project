@@ -4,7 +4,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Paper, Grid} from '@material-ui/core';
 import {withRouter} from 'react-router-dom'
 import {getData} from './api/index';
-import  {storage} from './firestore'
+import  {storage} from './api/firestore';
+import {Link} from 'react-router-dom';
 
 
 let styles = {
@@ -29,11 +30,6 @@ class CarouselDisplay extends React.Component{
         });
     }
 
-    itemClicked = (event)=>{
-        this.props.nameClicked({name:this.state.name[event], address:this.state.address[event]});
-        this.props.history.push('/pgInfo');
-    }
-
     render(){
         if(this.state.loaded){
         return (
@@ -43,8 +39,7 @@ class CarouselDisplay extends React.Component{
                     <Carousel autoPlay={true} 
                         interval={4000} 
                         infiniteLoop={true} 
-                        dynamicHeight={true} 
-                        onClickItem={this.itemClicked}>
+                        dynamicHeight={true}>
                     {this.state.name.map((name,i)=>(
                         <Page data={this.state} number={i} key={i} />
                     ))}
@@ -67,6 +62,7 @@ const Page = (props)=>{
 
     let [imageURL, setURL] = useState([]);
     const userName = props.data.name[props.number];
+    const address = props.data.address[props.number]
 
     const getImage = async ()=>{
         let images='';
@@ -82,14 +78,17 @@ const Page = (props)=>{
 
     if(imageURL){
     return(
-        <div>
+        <Link to={{
+            pathname:'/pgInfo',
+            state:{name:userName, address:address, image:imageURL}
+        }}><div>
             <img src={imageURL} alt="alt"/>
             <h2 style={{marginBottom:70, padding:'8px', fontSize:'20px'}} 
                 className='legend'>{userName}</h2>
-            <p className='legend' style={{padding:'6px', fontSize:'16px'}}>Address: {props.data.address[props.number]}</p>
-        </div>
+            <p className='legend' style={{padding:'6px', fontSize:'16px'}}>Address: {address}</p>
+        </div></Link>
     )
 }
 }
 
-export default withRouter(CarouselDisplay);
+export default (CarouselDisplay);

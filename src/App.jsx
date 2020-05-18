@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Router, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch, Link} from 'react-router-dom';
 import {AppBar, InputBase, Toolbar, Button, Menu, MenuItem, Typography} from '@material-ui/core'
 import InputForm from './Components/inputForm';
 import PGInfo from './Components/pgPage'
 import Carousel from './Components/displayInfo';
 import {createBrowserHistory} from 'history';
-import firebase, {storage} from './Components/firestore';
+import firebase, {storage} from './Components/api/firestore';
 import SearchTwoToneIcon from '@material-ui/icons/SearchTwoTone';
 
 const history = createBrowserHistory();
@@ -22,16 +22,16 @@ class App extends Component {
         achorMenu:null,
         isOpen:false,
         dataSaved:false,
-        pgToDisplay:{name:'Sample', address:'Sample'},
         uploading:false,
-        tabValue:1,
+        searchValue:'',
     }
 
     pgDisplay=(toDisplay)=>{
         this.setState({
             pgToDisplay:{
                 name:toDisplay.name,
-                address:toDisplay.address
+                address:toDisplay.address,
+                index:toDisplay.index
             }
         })
     }
@@ -107,16 +107,18 @@ class App extends Component {
         this.setState({anchorMenu:null})
     }
 
-    render() { 
-        console.log(this.state.pgToBeDiaplayed);
+    handleSearch = ()=>{
         
+    }
+
+    render() { 
         return ( 
             <React.Fragment>
                 <AppBar>
                     <Toolbar>
                         <a style={{textDecoration:'none', color:'white'}} href='/'>YEHLO</a>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuClick}>
-                            <Typography variant='p' style={{color:'white', marginLeft:'50px'}}>Menu</Typography>
+                            <Typography variant='body1' style={{color:'white', marginLeft:'50px'}}>Menu</Typography>
                         </Button>
                         <Menu
                             id="simple-menu"
@@ -133,7 +135,9 @@ class App extends Component {
                         </Menu>
                         
                         <div style={{marginLeft: '88%'}}>
-                            <InputBase placeholder='Search..' 
+                            <InputBase placeholder='Search..'
+                                value={this.state.searchValue}
+                                onChange={(event)=>{this.setState({searchValue:event.target.value})}} 
                                 style={{color:'white', fontWeight:'bold'}}/>
                         </div> <SearchTwoToneIcon />
                     </Toolbar>
@@ -150,7 +154,7 @@ class App extends Component {
                         addData={this.addData}
                     /> }/>
                     <Route exact path="/displayInfo" render={()=><Carousel nameClicked={(name)=>this.pgDisplay(name)} />} />
-                    <Route exact path="/pgInfo" render={()=><PGInfo pgName={this.state.pgToDisplay} />} />
+                    <Route exact path="/pgInfo/" render={(props)=>(<PGInfo {...props}/>)}  />} />
                     </Switch>
                 </Router> 
             </React.Fragment>
@@ -158,4 +162,6 @@ class App extends Component {
     }
 }
  
-export default App;
+
+export default (App);
+
