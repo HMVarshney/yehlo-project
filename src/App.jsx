@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {Router, Route, Switch, Link} from 'react-router-dom';
-import {AppBar, InputBase, Toolbar, Button, Menu, MenuItem, Typography} from '@material-ui/core'
+import {AppBar, InputBase, Toolbar, Button, Menu, MenuItem, Typography, Box, Grid} from '@material-ui/core'
 import InputForm from './Components/inputForm';
 import PGInfo from './Components/pgPage'
 import Carousel from './Components/displayInfo';
 import {createBrowserHistory} from 'history';
 import firebase, {storage} from './Components/api/firestore';
 import SearchTwoToneIcon from '@material-ui/icons/SearchTwoTone';
+import logo from './assets/images/yehloLogo1.jpg';
 
 const history = createBrowserHistory();
 
@@ -114,11 +115,11 @@ class App extends Component {
     render() { 
         return ( 
             <React.Fragment>
-                <AppBar>
+                <AppBar color='transparent'>
                     <Toolbar>
-                        <a style={{textDecoration:'none', color:'white'}} href='/'>YEHLO</a>
+                    <a href='/'><img src={logo} style={{width:'120px', position:'relative', left:'-25px', top:'2px', tranform:'rotate(20)'}} /></a>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleMenuClick}>
-                            <Typography variant='body1' style={{color:'white', marginLeft:'50px'}}>Menu</Typography>
+                            <Typography variant='h6' style={{color:'black', marginLeft:'50px'}}>Menu</Typography>
                         </Button>
                         <Menu
                             id="simple-menu"
@@ -134,11 +135,11 @@ class App extends Component {
                             </MenuItem>
                         </Menu>
                         
-                        <div style={{marginLeft: '88%'}}>
+                        <div style={{marginLeft: '82%'}}>
                             <InputBase placeholder='Search..'
                                 value={this.state.searchValue}
                                 onChange={(event)=>{this.setState({searchValue:event.target.value})}} 
-                                style={{color:'white', fontWeight:'bold'}}/>
+                                style={{color:'black', fontWeight:'bold'}}/>
                         </div> <SearchTwoToneIcon />
                     </Toolbar>
                 </AppBar>

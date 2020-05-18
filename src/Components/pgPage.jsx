@@ -5,12 +5,12 @@ import {Grid, Typography, Card, CardContent, CardHeader, Paper,
     GridList, GridListTile, GridListTileBar, IconButton, Avatar} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import StarBorderIcon from '@material-ui/icons/StarBorder'
+import StarSharp from '@material-ui/icons/StarSharp'
 
 class pgInfo extends Component {
     state = { 
         loaded:false,
         image:[],
-        liked:[]
      }
 
     async componentDidMount() {
@@ -30,18 +30,13 @@ class pgInfo extends Component {
         this.setState({image:[...this.state.image,images]})
     }
 
-    hanldeClick =(event)=>{
-        // this.props.nameClicked({name:this.state.name[event], address:this.state.address[event]});
-        // this.props.history.push('/pgInfo');
-        console.log(event.target.name);
-        console.log("clicked");
-    }
-
     render() {
         const {name, address, image} = this.props.location.state;
         
         if(this.state.loaded){
             return(
+                <div>
+            <img style={{position:'absolute', left:'0px', top:'0px', zIndex:-1, height:'200%', width:'100%', opacity:'0.6'}} src='https://cdn.hipwallpaper.com/i/3/88/sXHZgG.jpg' />
             <div style={{marginTop:'100px'}}>
             <Grid container spacing={4} alignItems='center' justify='center'>
                 <Paper>
@@ -64,7 +59,7 @@ class pgInfo extends Component {
             <br />
             <br />
             <br />
-            <div><Typography style={{fontFamily:'Vegan'}} align='center' variant='h3' color='primary' gutterBottom>Check out our other locations</Typography></div>
+            <div><Typography style={{fontFamily:'Pangolin'}} align='center' variant='h3' color='primary' gutterBottom>Check out our other locations</Typography></div>
 
             <Grid container justify='center' alignItems='center'>
                 <Grid item>    
@@ -74,16 +69,18 @@ class pgInfo extends Component {
                 </Grid>
             </Grid>
             </div>
+            </div>
          );}
 
          return(
-             <div>hey</div>
+             <div>Loading...</div>
          )
     }
 }
 
 const LowerGridList = (props)=>{
     let [imageURL, setURL] = useState([]);
+    let [liked, setLiked] = useState(false);
     const userName = props.data.name[props.num];
     const address = props.data.address[props.num];
 
@@ -110,8 +107,10 @@ const LowerGridList = (props)=>{
                 <img style={{width:'700px', height:'220px'}} src={imageURL} alt='image' />
                 <GridListTileBar title={userName} 
                     actionIcon={<IconButton 
-                    color='secondary'>
-                    <StarBorderIcon /></IconButton>} />
+                    color='secondary'
+                    onClick={()=>{setLiked(!liked)}}>
+                        {liked ? <StarSharp /> : <StarBorderIcon />}
+                    </IconButton>} />
             </GridListTile>
         </Link>
     );
